@@ -2,7 +2,6 @@ var path = require('path'),
  routes = require('./routes'),
  exphbs = require('express-handlebars'),
  express = require('express'),
- bodyParser = require('body-parser'),
  cookieParser = require('cookie-parser'),
  morgan = require('morgan'),
  methodOverride = require('method-override'),
@@ -10,7 +9,7 @@ var path = require('path'),
 module.exports = function(app) {
 app.use(morgan('dev'));
 
- app.use(bodyParser({
+ app.use(express.urlencoded({
  uploadDir:path.join(__dirname, 'public/upload/temp')
 }));
 
@@ -25,3 +24,4 @@ app.use(morgan('dev'));
   }
    return app;
   };
+  
