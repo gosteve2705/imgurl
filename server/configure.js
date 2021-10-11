@@ -8,6 +8,7 @@ var path = require('path'),
  errorHandler = require('errorhandler');
 module.exports = function(app) {
 app.use(morgan('dev'));
+var moment = require('moment');
 
  app.use(express.urlencoded({
  uploadDir:path.join(__dirname, 'public/upload/temp')
@@ -25,7 +26,12 @@ app.use(morgan('dev'));
   app.engine('handlebars', exphbs.create({
     defaultLayout: 'main',
     layoutsDir: app.get('views') + '/layouts',
-    partialsDir: [app.get('views') + '/partials']
+    partialsDir: [app.get('views') + '/partials'],
+    helpers: {
+      timeago: function(timestamp) {
+      return moment(timestamp).startOf('minute').fromNow();
+      }
+      }
    }).engine);
    app.set('view engine', 'handlebars');
    return app;
