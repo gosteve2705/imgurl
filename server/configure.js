@@ -6,13 +6,14 @@ var path = require('path'),
  morgan = require('morgan'),
  methodOverride = require('method-override'),
  errorHandler = require('errorhandler');
+ var moment = require('moment');
+var  multer = require('multer');
 module.exports = function(app) {
 app.use(morgan('dev'));
-var moment = require('moment');
 
- app.use(express.urlencoded({
- uploadDir:path.join(__dirname, 'public/upload/temp')
-}));
+
+ app.use(multer({ dest: path.join(__dirname,
+  'public/upload/temp')}));
 
  app.use(methodOverride());
  app.use(cookieParser('some-secret-value-here'));
