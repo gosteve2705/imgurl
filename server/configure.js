@@ -10,8 +10,7 @@ var path = require('path'),
  multer = require('multer');
 
 module.exports = function(app) {
-  app.use(multer({ dest: path.join(__dirname,
-    'public/upload/temp')}).single('file'));
+  //app.use(multer({ dest: path.join(__dirname, 'public/upload/temp')}).single('image'));
 app.use(morgan('dev'));
 
 app.use(methodOverride());
