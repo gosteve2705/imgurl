@@ -10,28 +10,28 @@ module.exports = function (callback) {
         models.Comment.count({}, next);
       },
       function (next) {
-        models.Image.aggregate({ $group : {
+        models.Image.aggregate().group({  
             _id : '1',
            viewsTotal : { $sum : '$views' }
-           }}, function(err, result) {
+           }, function(err, result) {
            var viewsTotal = 0;
            if (result.length> 0) {
            viewsTotal += result[0].viewsTotal;
             }
            next(null, viewsTotal);
-           });
+           }).allowDiskUse(true);
       },
       function (next) {
-        models.Image.aggregate({ $group : {
+        models.Image.aggregate().group({  
             _id : '1',
            likesTotal : { $sum : '$likes' }
-           }}, function (err, result) {
+           }, function(err, result) {
            var likesTotal = 0;
            if (result.length> 0) {
            likesTotal += result[0].likesTotal;
             }
            next(null, likesTotal);
-           });
+           }).allowDiskUse(true);
       },
     ],
     function (err, results) {
