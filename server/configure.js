@@ -12,12 +12,12 @@ var path = require('path'),
  const Handlebars = require('handlebars');
 
 module.exports = function(app) {
-  //app.use(multer({ dest: path.join(__dirname, 'public/upload/temp')}).single('image'));
+  app.use(multer({ dest: path.join(__dirname, 'public/upload/temp')}).single('image'));
 app.use(morgan('dev'));
 
 app.use(methodOverride());
 app.use(cookieParser('some-secret-value-here'));
-routes(app);
+routes.initialize(app);
  
 app.use('/public/', express.static(path.join(__dirname,
  '../public')));

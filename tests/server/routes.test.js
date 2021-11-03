@@ -8,7 +8,7 @@ describe("Routes", function () {
     delete: sinon.spy(),
   };
   beforeEach(function () {
-    routes.initialize(app);
+   routes(app);
   });
   // to do: write tests...
   describe("GETs", function () {
