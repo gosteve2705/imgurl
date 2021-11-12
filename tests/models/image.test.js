@@ -1,8 +1,9 @@
-var ImageModel = require("../../models/image");
+var ImageModel = require("../../models/image"),
+should = require('chai').should();
 describe("Image Model", function () {
   var image;
   it("should have a mongoose schema", function () {
-    expect(ImageModel.schema).to.be.defined;
+    ImageModel.schema.should.exist;
   });
   beforeEach(function () {
     image = new ImageModel({
@@ -13,30 +14,30 @@ describe("Image Model", function () {
   });
   describe("Schema", function () {
     it("should have a title string", function () {
-      expect(image.title).to.be.defined;
+      image.title.should.exist;
     });
     it("should have a description string", function () {
-      expect(image.description).to.be.defined;
+      image.description.should.exist;
     });
     it("should have a filename string", function () {
-      expect(image.filename).to.be.defined;
+      image.filename.should.exist;
     });
     it("should have a views number default to 0", function () {
-      expect(image.views).to.be.defined;
+      image.views.should.exist;
       expect(image.views).to.equal(0);
     });
     it("should have a likes number default to 0", function () {
-      expect(image.likes).to.be.defined;
+      image.likes.should.exist;
       expect(image.likes).to.equal(0);
     });
     it("should have a timestamp date", function () {
-      expect(image.timestamp).to.be.defined;
+      image.timestamp.should.exist;
     });
   });
   describe("Virtuals", function () {
     describe("uniqueId", function () {
       it("should be defined", function () {
-        expect(image.uniqueId).to.be.defined;
+        image.uniqueId.should.exist;
       });
       it("should get filename without extension", function () {
         expect(image.uniqueId).to.equal("testfile");
